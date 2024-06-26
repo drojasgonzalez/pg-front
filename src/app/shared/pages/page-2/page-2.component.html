@@ -4,16 +4,20 @@
             <thead class="ltr:text-left rtl:text-right">
                 <tr>
                     <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Name</th>
-                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Role</th>
-                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Salary</th>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Apellido</th>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">Email</th>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">phone</th>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-start">country</th>
                 </tr>
             </thead>
 
             <tbody class="divide-y divide-gray-200">
                 <tr *ngFor="let client of clients">
                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ client.name }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.name }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.name }}</td>
+                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.lastname }}</td>
+                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.email }}</td>
+                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.phone }}</td>
+                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.country }}</td>
                 </tr>
             </tbody>
         </table>
