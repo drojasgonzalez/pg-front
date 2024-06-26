@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Client } from "../models/client.model";
 import { environment } from "../../shared/environments/environment";
@@ -12,7 +12,25 @@ export class ClienteService {
 
     constructor(private http: HttpClient) {}
 
-    getClientes(): Observable<Client[]> {
-        return this.http.get<Client[]>(this.apiUrl + "/clients");
+    //? Servicio para api para peticiones linq entity framework
+    getClients(pageNumber: number, pageSize: number): Observable<Client[]> {
+        let params = new HttpParams()
+            .set("pageNumber", pageNumber.toString())
+            .set("pageSize", pageSize.toString());
+
+        return this.http.get<Client[]>(`${this.apiUrl}Clients/clients`, {
+            params,
+        });
+    }
+
+    //? Servicio para api procedimiento almacenado
+    getClientsSp(pageNumber: number, pageSize: number): Observable<Client[]> {
+        let params = new HttpParams()
+            .set("pageNumber", pageNumber.toString())
+            .set("pageSize", pageSize.toString());
+
+        return this.http.get<Client[]>(`${this.apiUrl}Clients/clientspaged`, {
+            params,
+        });
     }
 }
