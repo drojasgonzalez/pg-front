@@ -1,5 +1,9 @@
 {
     "conventionalCommits.scopes": [
         "add angular 16 project structure"
+    ],
+    "cSpell.words": [
+        "pais",
+        "telefono"
     ]
 }
