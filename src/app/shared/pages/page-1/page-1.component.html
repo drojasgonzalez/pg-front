@@ -16,7 +16,7 @@
                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ client.name }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.lastname }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.email }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.phone }}</td>
+                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.phone | phonePipe }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ client.country }}</td>
                 </tr>
             </tbody>
