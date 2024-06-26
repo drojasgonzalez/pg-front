@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ClienteService } from "./core/services/client.service";
 
 @Component({
@@ -6,18 +6,23 @@ import { ClienteService } from "./core/services/client.service";
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = "app";
+    clients: any[] = [];
+    currentPage = 1; // Página inicial
+    pages = Array.from({ length: 10 }, (_, i) => i + 1);
 
-    constructor(private clienteService: ClienteService) {
+    constructor(private clienteService: ClienteService) {}
+
+    ngOnInit(): void {
         this.getClients();
-        this.getClientsSp();
     }
 
     getClients(): void {
-        this.clienteService.getClients(1, 10).subscribe(
+        this.clienteService.getClients(this.currentPage, 10).subscribe(
             (clients) => {
                 console.log("clients no sp ", clients);
+                this.clients = clients;
             },
             (error) => {
                 console.error("Error al obtener clientes:", error);
@@ -25,17 +30,22 @@ export class AppComponent {
         );
     }
 
-    getClientsSp(): void {
-        this.clienteService.getClientsSp(1, 10).subscribe(
-            (clients) => {
-                console.log("clientes sp ", clients);
-            },
-            (error) => {
-                console.error(
-                    "Error al obtener clientes usando procedimiento almacenado:",
-                    error
-                );
-            }
-        );
+    prevPage(): void {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+            this.getClients();
+        }
+    }
+
+    nextPage(): void {
+        if (this.currentPage < this.pages.length) {
+            this.currentPage++;
+            this.getClients();
+        }
+    }
+
+    changePage(page: number): void {
+        this.currentPage = page;
+        this.getClients();
     }
 }
